@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 body {
   background-color: #C9D1D9;
   color: #1A1A2E;

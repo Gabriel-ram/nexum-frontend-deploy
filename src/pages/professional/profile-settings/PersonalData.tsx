@@ -71,6 +71,7 @@ function PersonalData() {
 
   const [loading, setLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
+  const [isUploadingAvatar, setIsUploadingAvatar] = useState(false)
   const [showConfirmModal, setShowConfirmModal] = useState(false)
   
   // Estado para el Toast gud y Errores
@@ -199,6 +200,7 @@ function PersonalData() {
     const file = event.target.files?.[0]
     if (file) {
       try {
+        setIsUploadingAvatar(true)
         const compressedBlob = await compressAndConvertToWebP(file, 0.8)
         const webpFile = new File([compressedBlob], `${file.name.split('.')[0]}.webp`, {
           type: 'image/webp'
@@ -206,9 +208,12 @@ function PersonalData() {
 
         const result = await uploadAvatar(webpFile)
         setAvatarUrl(result.data.avatar_url)
+        window.dispatchEvent(new CustomEvent('avatarUpdated', { detail: { url: result.data.avatar_url } }))
         setToast({ message: 'Foto de perfil actualizada con éxito.', type: 'success' })
       } catch (error: any) {
         setToast({ message: error.message || 'Error al subir la imagen.', type: 'error' })
+      } finally {
+        setIsUploadingAvatar(false)
       }
     }
   }
@@ -286,7 +291,8 @@ function PersonalData() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: '#f5f5f5'
+                backgroundColor: '#f5f5f5',
+                position: 'relative'
               }}
             >
               {avatarUrl ? (
@@ -297,6 +303,26 @@ function PersonalData() {
                 />
               ) : (
                 <span style={{ fontSize: '12px', fontWeight: '600', color: '#999' }}>Sin foto</span>
+              )}
+              {isUploadingAvatar && (
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  backgroundColor: 'rgba(0,0,0,0.45)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '999px'
+                }}>
+                  <div style={{
+                    width: '32px',
+                    height: '32px',
+                    border: '3px solid rgba(255,255,255,0.4)',
+                    borderTopColor: '#fff',
+                    borderRadius: '50%',
+                    animation: 'spin 0.8s linear infinite'
+                  }} />
+                </div>
               )}
             </div>
             <input
@@ -477,7 +503,7 @@ function PersonalData() {
         onClose={() => setShowConfirmModal(false)}
         title="¿Estás seguro que deseas actualizar tus Datos personales?"
       >
-        <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '20px', minWidth: '450px' }}>
+        <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <p style={{ fontSize: '14px', color: '#555', lineHeight: '1.5', margin: 0 }}>
             Estás a punto de actualizar todos tus datos, editados y borrados. Estos cambios serán visibles en tu perfil público de inmediato.
           </p>

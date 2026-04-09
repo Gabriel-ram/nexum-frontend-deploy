@@ -30,6 +30,15 @@ const Navbar = () => {
       .catch(() => {});
   }, [token]);
 
+  useEffect(() => {
+    const handleAvatarUpdate = (e: Event) => {
+      const url = (e as CustomEvent<{ url: string }>).detail.url;
+      setUserPhoto(url);
+    };
+    window.addEventListener("avatarUpdated", handleAvatarUpdate);
+    return () => window.removeEventListener("avatarUpdated", handleAvatarUpdate);
+  }, []);
+
   return (
     <nav className="w-full bg-[#001A5E] px-4 py-3 flex items-center justify-between">
       {/* Lado izquierdo: hamburguesa (mobile) + logo */}

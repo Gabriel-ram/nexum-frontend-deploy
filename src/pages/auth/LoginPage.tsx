@@ -92,7 +92,7 @@ const LoginPage = () => {
           </div>
 
           {/* Panel derecho - Formulario */}
-          <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-10 bg-background">
+          <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-6 sm:p-10 bg-background">
             <p className="text-textMain text-sm font-bold mb-1">Bienvenido</p>
             <p className="text-textMain font-bold mb-6">
               Accede a tu cuenta para continuar
@@ -160,7 +160,7 @@ const LoginPage = () => {
                 </div>
 
                 {/* Recordarme y olvidaste contraseña */}
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-y-2">
                   <label className="flex items-center gap-2 text-sm text-textMain cursor-pointer">
                     <input
                       type="checkbox"

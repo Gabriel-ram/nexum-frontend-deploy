@@ -83,9 +83,9 @@ const AccountsPage = () => {
         <Sidebar activeItem="Gestión Usuarios" />
 
         {/* Contenido principal */}
-        <div className="flex-1 p-6">
+        <div className="flex-1 p-4 sm:p-6 min-w-0">
           {/* Header */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
             <h1 className="text-2xl font-bold text-textMain">
               Gestión de Usuarios
             </h1>
@@ -205,7 +205,7 @@ const AccountsPage = () => {
       {/* Modal */}
       {showModal && selectedUser && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-96 shadow-xl">
+          <div className="bg-white rounded-lg p-6 w-[90vw] max-w-md shadow-xl">
             <h2 className="text-lg font-bold text-textMain mb-2">
               Confirmar Desactivación
             </h2>

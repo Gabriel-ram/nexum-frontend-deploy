@@ -130,21 +130,21 @@ const AuditPage = () => {
         <Sidebar activeItem="Auditoría" />
 
         {/* Contenido principal */}
-        <div className="flex-1 p-6">
+        <div className="flex-1 p-4 sm:p-6 min-w-0">
           <h1 className="text-2xl font-bold text-textMain mb-6">
             Historial de Auditoría
           </h1>
 
           {/* Filtros */}
-          <div className="flex flex-wrap items-center gap-4 mb-6">
-            <div className="relative">
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <div className="relative w-full sm:w-64">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
               <input
                 type="text"
                 placeholder="Nombre o ID"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 pr-4 py-2 bg-white border border-transparent rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20 w-64"
+                className="w-full pl-10 pr-4 py-2 bg-white border border-transparent rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
               />
             </div>
             <div className="flex items-center gap-2 bg-white rounded-lg shadow-sm border border-transparent px-3 py-2 relative transition-all ring-1 ring-gray-100 focus-within:ring-primary/20">

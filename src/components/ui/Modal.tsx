@@ -24,14 +24,14 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title, positio
 
   const contentContainerStyles: React.CSSProperties = {
     backgroundColor: '#FFFFFF',
-    padding: '32px',
+    padding: '24px',
     borderRadius: '24px',
     boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
-    width: 'fit-content',
-    minWidth: '320px',
+    width: '90vw',
     maxWidth: '550px',
     textAlign: 'center',
     position: 'relative',
+    boxSizing: 'border-box',
   };
 
   if (positioning === 'top-right') {
